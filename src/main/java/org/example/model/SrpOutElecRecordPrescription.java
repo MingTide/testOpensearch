@@ -1,12 +1,16 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SrpOutElecRecordPrescription extends RdBaseEntity {
 
     /**
@@ -31,7 +35,8 @@ public class SrpOutElecRecordPrescription extends RdBaseEntity {
      * 处方开立日期时间
      */
     @TransField("处方开立日期时间")
-    private Date rxTime;
+ @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date rxTime;
 
     /**
      * 处方开立医师

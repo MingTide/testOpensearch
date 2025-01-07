@@ -1,8 +1,11 @@
-package com.medaxis.srp.search.search.model;
+package org.example;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import com.medaxis.srp.rule.etl.model.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.model.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +17,7 @@ import java.util.List;
  * @date 2024/11/26
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SrpWideTableDeSerial {
 
     private String patientId;
@@ -75,14 +79,16 @@ public class SrpWideTableDeSerial {
      * 住院时间
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date inTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date inTime;
 
 
     /**
      * 门诊时间
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date outTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date outTime;
 
     /**
      * 门诊号

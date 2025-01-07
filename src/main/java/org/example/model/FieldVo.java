@@ -1,4 +1,4 @@
-package com.medaxis.srp.rule.domain.rule.vo;
+package org.example.model;
 
 public class FieldVo {
 

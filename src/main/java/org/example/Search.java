@@ -6,14 +6,12 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.samples;
+package org.example;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.util.AppData;
+import org.example.util.IndexData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -22,11 +20,7 @@ import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregation;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
-import org.opensearch.client.opensearch._types.analysis.Analyzer;
-import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
-import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
-import org.opensearch.client.opensearch._types.analysis.TokenFilter;
-import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
+import org.opensearch.client.opensearch._types.analysis.*;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
@@ -35,18 +29,17 @@ import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
-import org.opensearch.client.opensearch.core.search.CompletionSuggester;
-import org.opensearch.client.opensearch.core.search.FieldSuggester;
-import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
-import org.opensearch.client.opensearch.core.search.PhraseSuggester;
-import org.opensearch.client.opensearch.core.search.Suggester;
-import org.opensearch.client.opensearch.core.search.TermSuggester;
+import org.opensearch.client.opensearch.core.search.*;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
-import org.opensearch.client.samples.util.AppData;
-import org.opensearch.client.samples.util.IndexData;
+
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=Search</c>
@@ -63,7 +56,7 @@ public class Search {
             var version = client.info().version();
             LOGGER.info("Server: {}@{}", version.distribution(), version.number());
 
-            final var indexName = "my-index";
+            final var indexName = "my_index";
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);

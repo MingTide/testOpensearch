@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.samples.util;
+package org.example.util;
 
 public class AppData {
     private int intValue;

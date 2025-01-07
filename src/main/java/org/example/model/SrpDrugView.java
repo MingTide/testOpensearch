@@ -1,10 +1,13 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
@@ -14,6 +17,7 @@ import java.util.Date;
  * @date 2024-01-25 14:59:04
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_drug_view")
 public class SrpDrugView extends RdBaseEntity {
     /**
@@ -60,12 +64,14 @@ public class SrpDrugView extends RdBaseEntity {
     /**
      * 开始时间
      */
-    private Date drugStartTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date drugStartTime;
 
     /**
      * 终止时间
      */
-    private Date drugEndTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date drugEndTime;
 
     /**
      * 药品分类1

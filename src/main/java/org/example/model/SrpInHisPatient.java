@@ -1,12 +1,15 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
@@ -17,6 +20,7 @@ import java.util.Date;
  * @date 2023-11-08 15:33:09
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_in_his_patient")
 public class SrpInHisPatient extends RdBaseEntity {
 
@@ -72,7 +76,8 @@ public class SrpInHisPatient extends RdBaseEntity {
      * 质控日期
      */
     @TransField("质控日期")
-    private Date hosControlTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date hosControlTime;
 
     /**
      * 患者姓名
@@ -91,7 +96,8 @@ public class SrpInHisPatient extends RdBaseEntity {
      */
     @TransField("患者出生日期")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date birthday;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date birthday;
 
     /**
      * 患者年龄
@@ -188,14 +194,16 @@ public class SrpInHisPatient extends RdBaseEntity {
      */
     @TransField("入院日期")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date inHosTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date inHosTime;
 
     /**
      * 出院日期
      */
     @TransField("出院日期")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date outHosTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date outHosTime;
 
     /**
      * 住院天数

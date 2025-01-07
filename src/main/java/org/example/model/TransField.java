@@ -1,4 +1,4 @@
-package com.medaxis.srp.rule.domain.mdr.annotation;
+package org.example.model;
 
 import java.lang.annotation.*;
 

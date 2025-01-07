@@ -1,10 +1,12 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.rule.vo.FieldVo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
+
 import java.util.Date;
 
 /**
@@ -14,6 +16,7 @@ import java.util.Date;
  * @date 2023-11-08 15:33:09
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_out_visit")
 public class SrpOutVisit extends FieldVo {
 
@@ -58,26 +61,30 @@ public class SrpOutVisit extends FieldVo {
      */
     @TransField("发病日期时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date diseaseTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date diseaseTime;
 
     /**
      * 到达本院急诊或者门诊日期时间
      */
     @TransField("到达本院急诊或者门诊日期时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date reachHosTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date reachHosTime;
 
     /**
      * 急诊/门诊医师接诊日期
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @TransField("急诊/门诊医师接诊日期")
-    private Date firstAidTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date firstAidTime;
 
     /**
      * 创建时间
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @TransField("创建时间")
-    private Date createTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date createTime;
 }

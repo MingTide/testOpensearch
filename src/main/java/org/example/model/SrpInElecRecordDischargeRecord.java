@@ -1,8 +1,9 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 /**
@@ -12,6 +13,7 @@ import lombok.Data;
  * @date 2023-11-08 15:33:09
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_in_elec_record_discharge_record")
 public class SrpInElecRecordDischargeRecord extends RdBaseEntity {
 

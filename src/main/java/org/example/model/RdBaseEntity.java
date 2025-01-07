@@ -1,6 +1,8 @@
-package com.medaxis.srp.rule.domain.global;
+package org.example.model;
 
 import com.alibaba.fastjson2.annotation.JSONField;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.example.MultiFormatDateDeserializer;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,13 +22,15 @@ public class RdBaseEntity implements Serializable {
      * 创建时间
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date createTime;
 
     /**
      * 修改时间
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date updateTime;
 
     public Date getCreateTime() {
         return createTime;

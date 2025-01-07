@@ -1,13 +1,17 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_in_elec_record_inpatients")
 public class SrpInEmr extends RdBaseEntity {
     /**
@@ -62,7 +66,8 @@ public class SrpInEmr extends RdBaseEntity {
      * 签名时间
      */
     @TransField("签名时间")
-    private Date signTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date signTime;
 
     /**
      * 签名人

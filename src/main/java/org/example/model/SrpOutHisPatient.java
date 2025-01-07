@@ -1,11 +1,14 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
@@ -15,6 +18,7 @@ import java.util.Date;
  * @description：his-门诊患者基础信息
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_out_his_patient")
 public class SrpOutHisPatient extends RdBaseEntity {
 
@@ -47,7 +51,8 @@ public class SrpOutHisPatient extends RdBaseEntity {
      */
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @TransField("患者出生日期")
-    private Date birthday;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date birthday;
 
     /**
      * 患者年龄(年)

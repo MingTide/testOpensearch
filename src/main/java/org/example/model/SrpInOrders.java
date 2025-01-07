@@ -1,10 +1,13 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
@@ -15,6 +18,7 @@ import java.util.Date;
  * @date 2023-11-08 15:33:09
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_in_orders")
 public class SrpInOrders extends RdBaseEntity {
 
@@ -143,21 +147,24 @@ public class SrpInOrders extends RdBaseEntity {
      */
     @TransField("开始执行时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date startTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date startTime;
 
     /**
      * 执行终止时间
      */
     @TransField("执行终止时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date endTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date endTime;
 
     /**
      * 上次执行时间
      */
     @TransField("上次执行时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date lastTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date lastTime;
 
     /**
      * 下达科室
@@ -230,14 +237,16 @@ public class SrpInOrders extends RdBaseEntity {
      */
     @TransField("用药开始时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date medicineStartTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date medicineStartTime;
 
     /**
      * 用药停止时间
      */
     @TransField("用药停止时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date medicineEndTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date medicineEndTime;
 
     /**
      * 用药天数

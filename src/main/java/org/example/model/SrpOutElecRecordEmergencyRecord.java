@@ -1,10 +1,13 @@
-package com.medaxis.srp.rule.etl.model;
+package org.example.model;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.medaxis.srp.rule.domain.mdr.annotation.TransField;
-import com.medaxis.srp.rule.domain.global.RdBaseEntity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+import org.example.MultiFormatDateDeserializer;
 
 import java.util.Date;
 
@@ -15,6 +18,7 @@ import java.util.Date;
  * @date 2023-11-08 15:33:09
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("srp_out_elec_record_emergency_record")
 public class SrpOutElecRecordEmergencyRecord extends RdBaseEntity {
 
@@ -36,7 +40,8 @@ public class SrpOutElecRecordEmergencyRecord extends RdBaseEntity {
      */
     @TransField("就诊日期时间")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date visitsTime;
+     @JsonDeserialize(using = MultiFormatDateDeserializer.class)
+private Date visitsTime;
 
     /**
      * 症状持续时间(min)
