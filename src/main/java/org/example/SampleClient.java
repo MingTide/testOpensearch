@@ -19,7 +19,7 @@ public class SampleClient {
     public static OpenSearchClient create() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         var env = System.getenv();
         var https = Boolean.parseBoolean(env.getOrDefault("HTTPS", "false"));
-        var hostname = env.getOrDefault("HOST", "127.0.0.1");
+        var hostname = env.getOrDefault("HOST", "192.168.0.244");
         var port = Integer.parseInt(env.getOrDefault("PORT", "9200"));
         var user = "admin";
         var pass = env.getOrDefault("PASSWORD", "Medaxis@2023");
